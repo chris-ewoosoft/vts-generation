@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/api/client.ts","./src/components/chunkeditor.tsx","./src/components/chunklist.tsx","./src/components/requirementform.tsx","./src/components/vtsoutput.tsx","./src/pages/chunkmanagerpage.tsx","./src/pages/generatepage.tsx"],"version":"5.9.3"}

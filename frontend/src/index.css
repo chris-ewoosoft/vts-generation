@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Poppins:wght@500;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #0f172a;
+  background: #f7f7f2;
+}
+
+body {
+  @apply font-body min-h-screen;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(227, 100, 20, 0.14), transparent 30%),
+    radial-gradient(circle at 82% 10%, rgba(42, 157, 143, 0.15), transparent 25%),
+    linear-gradient(160deg, #f8f7f1 0%, #fef9f2 45%, #f4efe8 100%);
+}
+
+.card-panel {
+  @apply rounded-2xl bg-white/90 backdrop-blur border border-slate-200 shadow-soft;
+}

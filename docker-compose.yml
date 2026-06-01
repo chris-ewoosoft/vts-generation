@@ -16,8 +16,6 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: rag_frontend
-    environment:
-      VITE_API_URL: http://localhost:8001
     ports:
       - '5173:5173'
     depends_on:

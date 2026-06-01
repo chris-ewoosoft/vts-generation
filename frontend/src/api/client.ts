@@ -24,7 +24,28 @@ export type ChunkPayload = {
   metadata?: Record<string, unknown>
 }
 
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:8001'
+const envBase = import.meta.env.VITE_API_URL as string | undefined
+
+function resolveBaseUrl(): string {
+  const host = window.location.hostname
+  const protocol = window.location.protocol
+
+  if (!envBase) {
+    return `${protocol}//${host}:8001`
+  }
+
+  const isRemoteHost = host !== 'localhost' && host !== '127.0.0.1'
+  if (!isRemoteHost) {
+    return envBase
+  }
+
+  // If VITE_API_URL still points to loopback, rewrite it to the current host for LAN access.
+  return envBase
+    .replace('://localhost', `://${host}`)
+    .replace('://127.0.0.1', `://${host}`)
+}
+
+const BASE = resolveBaseUrl()
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {

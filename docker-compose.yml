@@ -1,26 +1,6 @@
 version: '3.9'
 
 services:
-  postgres:
-    image: pgvector/pgvector:pg16
-    container_name: rag_postgres
-    environment:
-      POSTGRES_USER: aiassistant
-      POSTGRES_PASSWORD: aiassistant
-      POSTGRES_DB: aiassistant
-    ports:
-      - '5432:5432'
-    volumes:
-      - pg_data:/var/lib/postgresql/data
-
-  ollama:
-    image: ollama/ollama:latest
-    container_name: rag_ollama
-    ports:
-      - '11434:11434'
-    volumes:
-      - ollama_data:/root/.ollama
-
   backend:
     build:
       context: ./backend
@@ -30,9 +10,6 @@ services:
       - ./backend/.env
     ports:
       - '8000:8000'
-    depends_on:
-      - postgres
-      - ollama
 
   frontend:
     build:
@@ -45,7 +22,3 @@ services:
       - '5173:5173'
     depends_on:
       - backend
-
-volumes:
-  pg_data:
-  ollama_data:
